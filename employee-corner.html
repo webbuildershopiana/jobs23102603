@@ -417,15 +417,17 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
     const qualificationCheckboxes = document.querySelectorAll('input[type="checkbox"][name="qualification"]');
     const experienceCheckboxes = document.querySelectorAll('input[type="checkbox"][name="experience"]');
     const languageCheckboxes = document.querySelectorAll('input[type="checkbox"][name="language"]');
-    const qualificationWarningDiv = document.getElementById('qualification-warning');
-    const experienceWarningDiv = document.getElementById('experience-warning');
-    const languageWarningDiv = document.getElementById('language-warning');
+   
     this.addEventListener("submit",i=>{
       i.preventDefault();
       console.log('submit')
       let qualificationSelected = false;
       let experienceSelected = false;
       let languageSelected = false;
+       const qualificationWarningDiv = document.getElementById('qualification-warning');
+    const experienceWarningDiv = document.getElementById('experience-warning');
+    const languageWarningDiv = document.getElementById('language-warning');
+      
       console.log("Form Submited.")
       for (const checkbox of qualificationCheckboxes) {
         if (checkbox.checked) {
