@@ -453,22 +453,6 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
       else {
         qualificationWarningDiv.style.display = 'none';
       }
-      if (!experienceSelected) {
-        experienceWarningDiv.textContent = 'Please select at least one option in Experience.';
-        experienceWarningDiv.style.display = 'block';
-        experienceWarningDiv.style.color = 'red';
-      }
-      else {
-        experienceWarningDiv.style.display = 'none';
-      }
-      if (!languageSelected) {
-        languageCheckboxes.textContent = 'Please select at least one option in Language.';
-        languageCheckboxes.style.display = 'block';
-        languageCheckboxes.style.color = 'red';
-      }
-      else {
-        languageCheckboxes.style.display = 'none';
-      }
       const s=new FormData(o);
       s.append("emailEnabled",r),s.append("formName",t),fetch(n,{
         method:e,body:s}
