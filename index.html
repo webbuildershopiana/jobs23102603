@@ -92,6 +92,23 @@
     </div>
    </div>
   </nav>
+  <form id="ig89bu8">
+   <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label><input type="email" required id="exampleInputEmail1" aria-describedby="emailHelp" class="form-control">
+    <div id="emailHelp" class="form-text">
+     We'll never share your email with anyone else.
+    </div>
+   </div>
+   <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label><input type="password" required id="exampleInputPassword1" class="form-control">
+   </div>
+   <div class="mb-3">
+    <label for="formFile" class="form-label">Choose file</label><input type="file" required id="formFile" class="form-control">
+   </div>
+   <div class="mb-3 form-check">
+    <input type="checkbox" id="exampleCheck1" class="form-check-input"><label for="exampleCheck1" class="form-check-label">Check me out</label>
+   </div><button type="submit" class="btn btn-primary">Submit</button>
+  </form>
   <section id="ic4pxq" class="pt-0">
    <div id="idqrv" class="container px-4 py-2">
     <div id="i9bh2" class="row p-2 row-cols-1 row-cols-md-2 row-cols-sm-1">
@@ -568,6 +585,13 @@
     </div>
    </section><!-- Section: Links  --><!-- Copyright --><!-- Copyright -->
   </footer><!-- Footer -->
+  <script>var props = {"ig89bu8":{"name":"myform","target":"_self","method":"POST","url":"https://api.shopiana.in/api/v1/wbWebsite/702/form/formData?store=jobs23102603","emailenable":false}};
+          var ids = Object.keys(props).map(function(id) { return '#'+id }).join(',');
+          var els = document.querySelectorAll(ids);
+          for (var i = 0, len = els.length; i < len; i++) {
+            var el = els[i];
+            (function({name:t,method:e,url:n,emailenable:r}){if(t){const o=this;this.addEventListener("submit",i=>{i.preventDefault();const s=new FormData(o);s.append("emailEnabled",r),s.append("formName",t),fetch(n,{method:e,body:s}).then(t=>{if(t.ok)return t.json();throw new Error("API call failed")}).then(t=>{console.log("API response:",t)}).catch(t=>{console.error("Error during API call:",t)})})}else console.log("somthing went wrong")}.bind(el))(props[el.id]);
+          }</script>
  </body>
 </html>
 </html>
