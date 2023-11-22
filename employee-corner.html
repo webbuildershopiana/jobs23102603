@@ -440,11 +440,10 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
           break;
         }
       }
-      
-      if (!atLeastOneQualificationSelected) {
+      if (!qualificationSelected) {
         const warningDiv = document.getElementById('qualification-warning');
-  		warningDiv.textContent = 'Please select at least one option in Qualification.';
-  		warningDiv.style.display = 'block';
+        warningDiv.textContent = 'Please select at least one option in Qualification.';
+        warningDiv.style.display = 'block';
       }
       const s=new FormData(o);
       s.append("emailEnabled",r),s.append("formName",t),fetch(n,{
