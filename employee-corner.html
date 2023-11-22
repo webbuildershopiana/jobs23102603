@@ -409,89 +409,89 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
           var els = document.querySelectorAll(ids);
           for (var i = 0, len = els.length; i < len; i++) {
             var el = els[i];
-            (function submitForm({ name: t, method: e, url: n, emailEnable: r }) {
+            (function submitForm({
+  name: t, method: e, url: n, emailEnable: r }
+                   ) {
   if (t) {
     const form = document.getElementById('yourFormId');
-
     form.addEventListener('submit', (event) => {
       event.preventDefault();
-
       const qualificationCheckboxes = document.querySelectorAll('input[type="checkbox"][name="qualification"]');
       const experienceCheckboxes = document.querySelectorAll('input[type="checkbox"][name="experience"]');
       const languageCheckboxes = document.querySelectorAll('input[type="checkbox"][name="language"]');
-
       let qualificationSelected = false;
       let experienceSelected = false;
       let languageSelected = false;
-
       const qualificationWarningDiv = document.getElementById('qualification-warning');
       const experienceWarningDiv = document.getElementById('experience-warning');
       const languageWarningDiv = document.getElementById('language-warning');
-
       for (const checkbox of qualificationCheckboxes) {
         if (checkbox.checked) {
           qualificationSelected = true;
           break;
         }
       }
-
       if (!qualificationSelected) {
         qualificationWarningDiv.textContent = 'Please select at least one option in Qualification.';
         qualificationWarningDiv.style.display = 'block';
         qualificationWarningDiv.style.color = 'red';
-      } else {
+      }
+      else {
         qualificationWarningDiv.style.display = 'none';
       }
-
       for (const checkbox of experienceCheckboxes) {
         if (checkbox.checked) {
           experienceSelected = true;
           break;
         }
       }
-
       if (!experienceSelected) {
         experienceWarningDiv.textContent = 'Please select at least one option in Experience.';
         experienceWarningDiv.style.display = 'block';
         experienceWarningDiv.style.color = 'red';
-      } else {
+      }
+      else {
         experienceWarningDiv.style.display = 'none';
       }
-
       for (const checkbox of languageCheckboxes) {
         if (checkbox.checked) {
           languageSelected = true;
           break;
         }
       }
-
       if (!languageSelected) {
         languageWarningDiv.textContent = 'Please select at least one option in Language.';
         languageWarningDiv.style.display = 'block';
         languageWarningDiv.style.color = 'red';
-      } else {
+      }
+      else {
         languageWarningDiv.style.display = 'none';
       }
-
       if (qualificationSelected && experienceSelected && languageSelected) {
         const formData = new FormData(form);
         formData.append('emailEnabled', r);
         formData.append('formName', t);
-
-        fetch(n, { method: e, body: formData })
+        fetch(n, {
+          method: e, body: formData }
+             )
           .then(response => {
-            if (response.ok) return response.json();
-            throw new Error('API call failed');
-          })
+          if (response.ok) return response.json();
+          throw new Error('API call failed');
+        }
+               )
           .then(data => {
-            console.log('API response:', data);
-          })
+          console.log('API response:', data);
+        }
+               )
           .catch(error => {
-            console.error('Error during API call:', error);
-          });
+          console.error('Error during API call:', error);
+        }
+                );
       }
-    });
-  } else {
+    }
+                         );
+  }
+  else {
     console.log('Something went wrong');
   }
 }.bind(el))(props[el.id]);
