@@ -203,7 +203,7 @@
           <div id="igtaqvw" class="mb-3 form-check">
            <input type="checkbox" value="Hindi" id="i67fokg" class="form-check-input"><label for="exampleCheck1" class="form-check-label">Hindi</label>
           </div>
-          <div class="mb-3 form-check mb-2" id="id8kkay">
+          <div id="id8kkay" class="mb-3 form-check mb-2">
            <input type="checkbox" value="Other" id="ifjql9l" class="form-check-input"><label for="exampleCheck1" id="ij7hoeo" class="form-check-label">Other</label>
           </div>
           <div id="language-warning" class="div"></div>
@@ -404,7 +404,7 @@
 const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-collapse");for(let n=0;n<t.length;n++)t[n].addEventListener("click",function(){t[n].classList.toggle("active"),e[n].classList.toggle("show")})
 }.bind(items[i]))();
           }
-          var props = {"imn6u97":{"name":"myform","target":"_self","method":"POST","url":"https://api.shopiana.in/api/v1/wbWebsite/702/form/formData?store=jobs23102603","emailenable":false}};
+          var props = {"imn6u97":{"name":"employeeCornerForm","target":"_self","method":"POST","url":"https://api.shopiana.in/api/v1/wbWebsite/702/form/formData?store=jobs23102603","emailenable":false}};
           var ids = Object.keys(props).map(function(id) { return '#'+id }).join(',');
           var els = document.querySelectorAll(ids);
           for (var i = 0, len = els.length; i < len; i++) {
@@ -413,7 +413,7 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
   name: t, method: e, url: n, emailEnable: r }
                    ) {
   if (t) {
-    const form = document.getElementById('yourFormId');
+    const form = document.getElementById('employeeCornerForm');
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       const qualificationCheckboxes = document.querySelectorAll('input[type="checkbox"][name="qualification"]');
