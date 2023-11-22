@@ -413,8 +413,8 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
   name: t, method: e, url: n, emailEnable: r }
                    ) {
   if (t) {
-    const form = document.getElementById('employeeCornerForm');
-    form.addEventListener('submit', (event) => {
+    const o=this;
+    this.addEventListener('submit', (event) => {
       event.preventDefault();
       const qualificationCheckboxes = document.querySelectorAll('input[type="checkbox"][name="qualification"]');
       const experienceCheckboxes = document.querySelectorAll('input[type="checkbox"][name="experience"]');
