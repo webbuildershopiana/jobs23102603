@@ -426,6 +426,7 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
       const experienceWarningDiv = document.getElementById('experience-warning');
       const languageWarningDiv = document.getElementById('language-warning');
       for (const checkbox of qualificationCheckboxes) {
+        console.log(checkbox)
         if (checkbox.checked) {
           qualificationSelected = true;
           break;
@@ -440,6 +441,7 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
         qualificationWarningDiv.style.display = 'none';
       }
       for (const checkbox of experienceCheckboxes) {
+        console.log(checkbox)
         if (checkbox.checked) {
           experienceSelected = true;
           break;
@@ -454,6 +456,7 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
         experienceWarningDiv.style.display = 'none';
       }
       for (const checkbox of languageCheckboxes) {
+        console.log(checkbox)
         if (checkbox.checked) {
           languageSelected = true;
           break;
