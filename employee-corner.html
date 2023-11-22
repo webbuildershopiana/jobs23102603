@@ -451,8 +451,25 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
         qualificationWarningDiv.style.color = 'red';
       }
       else {
-        const qualificationWarningDiv = document.getElementById('qualification-warning');
         qualificationWarningDiv.style.display = 'none';
+      }
+      
+      if (!experienceSelected) {
+        experienceWarningDiv.textContent = 'Please select at least one option in Experience.';
+        experienceWarningDiv.style.display = 'block';
+        experienceWarningDiv.style.color = 'red';
+      }
+      else {
+        experienceWarningDiv.style.display = 'none';
+      }
+      
+      if (!languageSelected) {
+        languageWarningDiv.textContent = 'Please select at least one option in Language.';
+        languageWarningDiv.style.display = 'block';
+        languageWarningDiv.style.color = 'red';
+      }
+      else {
+        languageWarningDiv.style.display = 'none';
       }
       const s=new FormData(o);
       s.append("emailEnabled",r),s.append("formName",t),fetch(n,{
