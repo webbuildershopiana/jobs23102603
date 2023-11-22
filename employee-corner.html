@@ -426,10 +426,31 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
         ){
   if(t){
     const o=this;
+    const qualificationCheckboxes = document.querySelectorAll('input[type="checkbox"][name="qualification"]');
+    const experienceCheckboxes = document.querySelectorAll('input[type="checkbox"][name="experience"]');
+    const languageCheckboxes = document.querySelectorAll('input[type="checkbox"][name="language"]');
     this.addEventListener("submit",i=>{
       i.preventDefault();
-      
-      console.log('this form is submited.')
+      console.log('submit')
+      let qualificationSelected = false;
+      let experienceSelected = false;
+      let languageSelected = false;
+      console.log("Form Submited.")
+      for (const checkbox of qualificationCheckboxes) {
+        if (checkbox.checked) {
+          atLeastOneQualificationSelected = true;
+          break;
+        }
+      }
+      for (const checkbox of experienceCheckboxes) {
+        if (checkbox.checked) {
+          atLeastOneExperienceSelected = true;
+          break;
+        }
+      }
+      if (!atLeastOneQualificationSelected) {
+        alert('Please select at least one option in both Qualification and Experience sections.');
+      }
       const s=new FormData(o);
       s.append("emailEnabled",r),s.append("formName",t),fetch(n,{
         method:e,body:s}
@@ -448,33 +469,6 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
           for (var i = 0, len = items.length; i < len; i++) {
             (function(){
 let el = this
-const qualificationCheckboxes = document.querySelectorAll('input[type="checkbox"][name="qualification"]');
-const experienceCheckboxes = document.querySelectorAll('input[type="checkbox"][name="experience"]');
-const languageCheckboxes = document.querySelectorAll('input[type="checkbox"][name="language"]');
-this.addEventListener('submit', function(event) {
-  event.preventdefault()
-  console.log('submit')
-  let qualificationSelected = false;
-  let experienceSelected = false;
-  let languageSelected = false;
-  console.log("Form Submited.")
-  for (const checkbox of qualificationCheckboxes) {
-    if (checkbox.checked) {
-      atLeastOneQualificationSelected = true;
-      break;
-    }
-  }
-  for (const checkbox of experienceCheckboxes) {
-    if (checkbox.checked) {
-      atLeastOneExperienceSelected = true;
-      break;
-    }
-  }
-  if (!atLeastOneQualificationSelected) {
-    alert('Please select at least one option in both Qualification and Experience sections.');
-  }
-}
-                                                              )
 
 }.bind(items[i]))();
           }</script>
