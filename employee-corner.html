@@ -467,27 +467,6 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
       else {
         languageWarningDiv.style.display = 'none';
       }
-      if (qualificationSelected && experienceSelected && languageSelected) {
-        const formData = new FormData(form);
-        formData.append('emailEnabled', r);
-        formData.append('formName', t);
-        fetch(n, {
-          method: e, body: formData }
-             )
-          .then(response => {
-          if (response.ok) return response.json();
-          throw new Error('API call failed');
-        }
-               )
-          .then(data => {
-          console.log('API response:', data);
-        }
-               )
-          .catch(error => {
-          console.error('Error during API call:', error);
-        }
-                );
-      }
     }
                          );
   }
