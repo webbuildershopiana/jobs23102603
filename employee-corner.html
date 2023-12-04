@@ -431,66 +431,87 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
     if(!(t&&r&&s&&e&&o&&i))return void alert("Oops! We encountered a problem. Please try again later.");
     const h=document.createElement("script");
     h.src="https://checkout.razorpay.com/v1/checkout.js",h.async=!0,document.head.appendChild(h);
-   const qualificationCheckboxes = document.querySelectorAll('input[type="checkbox"][name="qualification"]');
-const experienceCheckboxes = document.querySelectorAll('input[type="checkbox"][name="experience"]');
-const languageCheckboxes = document.querySelectorAll('input[type="checkbox"][name="language"]');
-let qualificationSelected = false;
-let experienceSelected = false;
-let languageSelected = false;
+    const qualificationCheckboxes = document.querySelectorAll('input[type="checkbox"][name="qualification"]');
+    const experienceCheckboxes = document.querySelectorAll('input[type="checkbox"][name="experience"]');
+    const languageCheckboxes = document.querySelectorAll('input[type="checkbox"][name="language"]');
+    let qualificationSelected = false;
+    let experienceSelected = false;
+    let languageSelected = false;
+    const qualificationWarningDiv = document.getElementById('qualification-warning');
+    const experienceWarningDiv = document.getElementById('experience-warning');
+    const languageWarningDiv = document.getElementById('language-warning');
 
-const qualificationWarningDiv = document.getElementById('qualification-warning');
-const experienceWarningDiv = document.getElementById('experience-warning');
-const languageWarningDiv = document.getElementById('language-warning');
 
-for (const checkbox of qualificationCheckboxes) {
-  if (checkbox.checked) {
-    qualificationSelected = true;
-    break;
-  }
-}
+let previouslySelectedQualificationCheckbox = null;
+let previouslySelectedExperienceCheckbox = null;
 
-if (!qualificationSelected) {
-  qualificationWarningDiv.textContent = 'Please select at least one option in Qualification.';
-  qualificationWarningDiv.style.display = 'block';
-  qualificationWarningDiv.style.color = 'red';
-} else {
-  qualificationWarningDiv.style.display = 'none';
-}
-
-for (const checkbox of experienceCheckboxes) {
-  if (checkbox.checked) {
-    experienceSelected = true;
-    break;
-  }
-}
-
-if (!experienceSelected) {
-  experienceWarningDiv.textContent = 'Please select at least one option in Experience.';
-  experienceWarningDiv.style.display = 'block';
-  experienceWarningDiv.style.color = 'red';
-} else {
-  experienceWarningDiv.style.display = 'none';
-}
-
-for (const checkbox of languageCheckboxes) {
-  if (checkbox.checked) {
-    languageSelected = true;
-    break;
-  }
-}
-
-if (!languageSelected) {
-  languageWarningDiv.textContent = 'Please select at least one option in Language.';
-  languageWarningDiv.style.display = 'block';
-  languageWarningDiv.style.color = 'red';
-} else {
-  languageWarningDiv.style.display = 'none';
-}
-
-// Prevent form submission if any checkbox is not checked
-if (!qualificationSelected || !experienceSelected || !languageSelected) {
-  return; // Prevent form submission
-}
+qualificationCheckboxes.forEach(checkbox => {
+  checkbox.addEventListener('change', () => {
+    if (checkbox.checked) {
+      if (previouslySelectedQualificationCheckbox) {
+        previouslySelectedQualificationCheckbox.checked = false;
+      }
+      previouslySelectedQualificationCheckbox = checkbox;
+    }
+  });
+});
+experienceCheckboxes.forEach(checkbox => {
+  checkbox.addEventListener('change', () => {
+    if (checkbox.checked) {
+      if (previouslySelectedExperienceCheckbox) {
+        previouslySelectedExperienceCheckbox.checked = false;
+      }
+      previouslySelectedExperienceCheckbox = checkbox;
+    }
+  });
+});
+    for (const checkbox of qualificationCheckboxes) {
+      if (checkbox.checked) {
+        qualificationSelected = true;
+        break;
+      }
+    }
+    if (!qualificationSelected) {
+      qualificationWarningDiv.textContent = 'Please select at least one option in Qualification.';
+      qualificationWarningDiv.style.display = 'block';
+      qualificationWarningDiv.style.color = 'red';
+    }
+    else {
+      qualificationWarningDiv.style.display = 'none';
+    }
+    for (const checkbox of experienceCheckboxes) {
+      if (checkbox.checked) {
+        experienceSelected = true;
+        break;
+      }
+    }
+    if (!experienceSelected) {
+      experienceWarningDiv.textContent = 'Please select at least one option in Experience.';
+      experienceWarningDiv.style.display = 'block';
+      experienceWarningDiv.style.color = 'red';
+    }
+    else {
+      experienceWarningDiv.style.display = 'none';
+    }
+    for (const checkbox of languageCheckboxes) {
+      if (checkbox.checked) {
+        languageSelected = true;
+        break;
+      }
+    }
+    if (!languageSelected) {
+      languageWarningDiv.textContent = 'Please select at least one option in Language.';
+      languageWarningDiv.style.display = 'block';
+      languageWarningDiv.style.color = 'red';
+    }
+    else {
+      languageWarningDiv.style.display = 'none';
+    }
+    // Prevent form submission if any checkbox is not checked
+    if (!qualificationSelected || !experienceSelected || !languageSelected) {
+      return;
+      // Prevent form submission
+    }
     const f=new FormData(p);
     for(let t=0;t<p.elements.length;t++){
       const e=p.elements[t];
