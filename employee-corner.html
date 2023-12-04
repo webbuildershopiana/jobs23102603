@@ -451,20 +451,30 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
             }
           }
           qualificationSelected = true;
-        } else {
+        }
+        else {
           qualificationSelected = false;
         }
-    
-        // Check qualificationSelected after each checkbox change
+        
         if (!qualificationSelected) {
           qualificationWarningDiv.textContent = 'Please select one option in Qualifications.';
           qualificationWarningDiv.style.display = 'block';
           qualificationWarningDiv.style.color = 'red';
-        } else {
+        }
+        else {
           qualificationWarningDiv.style.display = 'none';
         }
-      });
+      }
+                               );
     }
+     if (!qualificationSelected) {
+          qualificationWarningDiv.textContent = 'Please select one option in Qualifications.';
+          qualificationWarningDiv.style.display = 'block';
+          qualificationWarningDiv.style.color = 'red';
+        }
+        else {
+          qualificationWarningDiv.style.display = 'none';
+        }
     for (const checkbox of experienceCheckboxes) {
       checkbox.addEventListener('change', () => {
         experienceSelected = false;
