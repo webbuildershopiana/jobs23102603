@@ -238,7 +238,7 @@
      </section>
      <section id="icwydva" class="p-0">
       <div id="isoh9zl" class="container px-4 py-2">
-       <div class="row p-2 row-cols-1 row-cols-sm-2 row-cols-md-2" id="i556kgg">
+       <div id="i556kgg" class="row p-2 row-cols-1 row-cols-sm-2 row-cols-md-2">
         <div id="i9e6pil" class="col pt-3">
          <div id="imn4iuz" class="container gap-2">
           <label id="i8y4erg">Mobile Number</label><input type="number" placeholder="Phone number" id="iuzrajv">
@@ -449,51 +449,43 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
             if (otherCheckbox !== checkbox && otherCheckbox.checked) {
               otherCheckbox.checked = false;
             }
-            else {
-              qualificationSelected = true;
-            }
           }
           qualificationSelected = true;
+        } else {
+          qualificationSelected = false;
         }
-        else {
-          qualificationWarningDiv.textContent = 'Please select one option in Experience.';
+    
+        // Check qualificationSelected after each checkbox change
+        if (!qualificationSelected) {
+          qualificationWarningDiv.textContent = 'Please select one option in Qualifications.';
           qualificationWarningDiv.style.display = 'block';
           qualificationWarningDiv.style.color = 'red';
+        } else {
+          qualificationWarningDiv.style.display = 'none';
+        }
+      });
+    }
+    for (const checkbox of experienceCheckboxes) {
+      checkbox.addEventListener('change', () => {
+        experienceSelected = false;
+        if (checkbox.checked) {
+          experienceSelected = true;
+        }
+        if (!experienceSelected) {
+          experienceWarningDiv.textContent = 'Please select one option in Experience.';
+          experienceWarningDiv.style.display = 'block';
+          experienceWarningDiv.style.color = 'red';
+        }
+        else {
+          experienceWarningDiv.style.display = 'none';
         }
       }
                                );
     }
-    let experienceSelected = false;
-
-for (const checkbox of experienceCheckboxes) {
-  checkbox.addEventListener('change', () => {
-    experienceSelected = false; // Reset selection state
-
-    if (checkbox.checked) {
-      experienceSelected = true;
-    }
-
     if (!experienceSelected) {
       experienceWarningDiv.textContent = 'Please select one option in Experience.';
       experienceWarningDiv.style.display = 'block';
       experienceWarningDiv.style.color = 'red';
-    } else {
-      experienceWarningDiv.style.display = 'none';
-    }
-  });
-}
-
-if (!experienceSelected) {
-  experienceWarningDiv.textContent = 'Please select one option in Experience.';
-  experienceWarningDiv.style.display = 'block';
-  experienceWarningDiv.style.color = 'red';
-}
-
-    for (const checkbox of languageCheckboxes) {
-      if (checkbox.checked) {
-        languageSelected = true;
-        break;
-      }
     }
     if (!languageSelected) {
       languageWarningDiv.textContent = 'Please select at least one option in Language.';
