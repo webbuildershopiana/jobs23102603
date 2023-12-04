@@ -463,27 +463,32 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
       }
                                );
     }
-     for (const checkbox of experienceCheckboxes) {
-    checkbox.addEventListener('change', () => {
-      if (checkbox.checked) {
-        for (const otherCheckbox of experienceCheckboxes) {
-          if (otherCheckbox !== checkbox && otherCheckbox.checked) {
-            otherCheckbox.checked = false;
-          }
-          else {
-            experienceSelected = true;
-          }
-        }
-        experienceSelected = true;
-      } else {
-        experienceWarningDiv.textContent = 'Please select one option in Experience.';
-        experienceWarningDiv.style.display = 'block';
-        experienceWarningDiv.style.color = 'red';
-      }
-      
+    let experienceSelected = false;
+
+for (const checkbox of experienceCheckboxes) {
+  checkbox.addEventListener('change', () => {
+    experienceSelected = false; // Reset selection state
+
+    if (checkbox.checked) {
+      experienceSelected = true;
     }
-);
+
+    if (!experienceSelected) {
+      experienceWarningDiv.textContent = 'Please select one option in Experience.';
+      experienceWarningDiv.style.display = 'block';
+      experienceWarningDiv.style.color = 'red';
+    } else {
+      experienceWarningDiv.style.display = 'none';
+    }
+  });
 }
+
+if (!experienceSelected) {
+  experienceWarningDiv.textContent = 'Please select one option in Experience.';
+  experienceWarningDiv.style.display = 'block';
+  experienceWarningDiv.style.color = 'red';
+}
+
     for (const checkbox of languageCheckboxes) {
       if (checkbox.checked) {
         languageSelected = true;
