@@ -442,129 +442,129 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
     const qualificationWarningDiv = document.getElementById('qualification-warning');
     const experienceWarningDiv = document.getElementById('experience-warning');
     const languageWarningDiv = document.getElementById('language-warning');
-   for (const checkbox of qualificationCheckboxes) {
-  checkbox.addEventListener('change', () => {
-    if (checkbox.checked) {
-      for (const otherCheckbox of qualificationCheckboxes) {
-        if (otherCheckbox !== checkbox && otherCheckbox.checked) {
-          otherCheckbox.checked = false;
-        }
-        else {
+    for (const checkbox of qualificationCheckboxes) {
+      checkbox.addEventListener('change', () => {
+        if (checkbox.checked) {
+          for (const otherCheckbox of qualificationCheckboxes) {
+            if (otherCheckbox !== checkbox && otherCheckbox.checked) {
+              otherCheckbox.checked = false;
+            }
+            else {
+              qualificationSelected = true;
+            }
+          }
           qualificationSelected = true;
         }
-        qualificationSelected = true;
-      }
-    }
-  }
-    );
-    if (!qualificationSelected) {
-      qualificationWarningDiv.textContent = 'Please select one option in Experience.';
-      qualificationWarningDiv.style.display = 'block';
-      qualificationWarningDiv.style.color = 'red';
-    }
-  }
-		for (const checkbox of experienceCheckboxes) {
-  checkbox.addEventListener('change', () => {
-    if (checkbox.checked) {
-      for (const otherCheckbox of experienceCheckboxes) {
-        if (otherCheckbox !== checkbox && otherCheckbox.checked) {
-          otherCheckbox.checked = false;
-        }
         else {
-          experienceSelected = true;
+          qualificationWarningDiv.textContent = 'Please select one option in Experience.';
+          qualificationWarningDiv.style.display = 'block';
+          qualificationWarningDiv.style.color = 'red';
+        }
+      }
+                               );
+    }
+     for (const checkbox of experienceCheckboxes) {
+    checkbox.addEventListener('change', () => {
+      if (checkbox.checked) {
+        for (const otherCheckbox of experienceCheckboxes) {
+          if (otherCheckbox !== checkbox && otherCheckbox.checked) {
+            otherCheckbox.checked = false;
+          }
+          else {
+            experienceSelected = true;
+          }
         }
         experienceSelected = true;
+      } else {
+        experienceWarningDiv.textContent = 'Please select one option in Experience.';
+        experienceWarningDiv.style.display = 'block';
+        experienceWarningDiv.style.color = 'red';
+      }
+      
+    }
+);
+}
+    for (const checkbox of languageCheckboxes) {
+      if (checkbox.checked) {
+        languageSelected = true;
+        break;
       }
     }
-  }
-    );
-    if (!experienceSelected) {
-      experienceWarningDiv.textContent = 'Please select one option in Experience.';
-      experienceWarningDiv.style.display = 'block';
-      experienceWarningDiv.style.color = 'red';
+    if (!languageSelected) {
+      languageWarningDiv.textContent = 'Please select at least one option in Language.';
+      languageWarningDiv.style.display = 'block';
+      languageWarningDiv.style.color = 'red';
     }
-  }
-      for (const checkbox of languageCheckboxes) {
-        if (checkbox.checked) {
-          languageSelected = true;
-          break;
+    else {
+      languageWarningDiv.style.display = 'none';
+    }
+    if (!qualificationSelected || !experienceSelected || !languageSelected) {
+      return;
+    }
+    const f=new FormData(p);
+    for(let t=0;t<p.elements.length;t++){
+      const e=p.elements[t];
+      e.name&&("INPUT"===e.tagName?"text"===e.type||"number"===e.type||"email"===e.type?f[e.name]=e.value:"checkbox"===e.type&&(f[e.name]=e.checked):("TEXTAREA"===e.tagName||"SELECT"===e.tagName)&&(f[e.name]=e.value))}
+    f.append("emailEnabled",n),f.append("formName",t),f.append("price",a),fetch(e,{
+      method:"POST",body:f}
+                                                                               ).then(t=>{
+      if(t.ok)return t.json();
+      throw new Error("API call failed")}
+                                                                                     ).then(t=>{
+      if("SIMPLE_FORM"===s)return p.reset(),void alert("details saved successfully");
+      const e={
+        websiteFormId:null==t?void 0:t.id,amount:null==t?void 0:t.price,websiteId:r,integrationKeys:{
         }
-      }
-      if (!languageSelected) {
-        languageWarningDiv.textContent = 'Please select at least one option in Language.';
-        languageWarningDiv.style.display = 'block';
-        languageWarningDiv.style.color = 'red';
-      }
-      else {
-        languageWarningDiv.style.display = 'none';
-      }
-      if (!qualificationSelected || !experienceSelected || !languageSelected) {
-        return;
-      }
-      const f=new FormData(p);
-      for(let t=0;t<p.elements.length;t++){
-        const e=p.elements[t];
-        e.name&&("INPUT"===e.tagName?"text"===e.type||"number"===e.type||"email"===e.type?f[e.name]=e.value:"checkbox"===e.type&&(f[e.name]=e.checked):("TEXTAREA"===e.tagName||"SELECT"===e.tagName)&&(f[e.name]=e.value))}
-      f.append("emailEnabled",n),f.append("formName",t),f.append("price",a),fetch(e,{
-        method:"POST",body:f}
-                                                                                 ).then(t=>{
+        ,paymentId:"",paymentModule:"wb_razorpay",paymentToken:"",paymentType:"ONLINEPAYMENT"}
+      ,n=new Headers;
+      n.append("Content-Type","application/json");
+      const a={
+        method:"POST",headers:n,body:JSON.stringify(e)};
+      fetch(o,a).then(t=>{
         if(t.ok)return t.json();
         throw new Error("API call failed")}
-                                                                                       ).then(t=>{
-        if("SIMPLE_FORM"===s)return p.reset(),void alert("details saved successfully");
-        const e={
-          websiteFormId:null==t?void 0:t.id,amount:null==t?void 0:t.price,websiteId:r,integrationKeys:{
-          }
-          ,paymentId:"",paymentModule:"wb_razorpay",paymentToken:"",paymentType:"ONLINEPAYMENT"}
-        ,n=new Headers;
-        n.append("Content-Type","application/json");
-        const a={
-          method:"POST",headers:n,body:JSON.stringify(e)};
-        fetch(o,a).then(t=>{
-          if(t.ok)return t.json();
-          throw new Error("API call failed")}
-                       ).then(e=>{
-          var o;
-          try{
-            if(e){
-              const s={
-              }
-              ,a={
-                key:null===(o=null==e?void 0:e.metadata)||void 0===o?void 0:o.keyId,amount:null==s?void 0:s.amount,currency:"INR",name:"NJ collections",description:"",image:"",order_id:null==e?void 0:e.paymentToken,receipt:"receipt_order_"+(null==e?void 0:e.orderId),handler:o=>{
-                  const s={
-                    method:"POST",headers:n,body:JSON.stringify({
-                      amount:null==e?void 0:e.amount,integrationKeys:{
-                      }
-                      ,paymentId:null==o?void 0:o.razorpay_payment_id,paymentModule:"wb_razorpay",paymentToken:null==o?void 0:o.razorpay_order_id,paymentType:"ONLINEPAYMENT",websiteFormId:null==t?void 0:t.id,websiteId:r,signature:null==o?void 0:o.razorpay_signature,transactionType:"AUTHORIZECAPTURE"}
-                                                               )};
-                  fetch(i,s).then(t=>{
-                    if(t.ok)return t.json();
-                    throw new Error("API call failed")}
-                                 ).then(t=>{
-                    p.reset(),alert("payment Received")}
-                                       ).catch(t=>{
-                    console.log(t)}
-                                              )}
-                ,prefill:{
-                  name:c,email:u,contact:l}
-                ,theme:{
-                  color:"#3399cc"}
-              }
-              ,d=new window.Razorpay(a);
-              d.open(),d.on("payment.failed",function(t){
-                alert(t.error.description)}
-                           )}
-            else console.log("PICKBAZAR_ERROR.SOMETHING_WENT_WRONG")}
-          catch(s){
-            console.log(s)}
-        }
-                             ).catch(t=>{
-          console.error("Error during API call:",t)}
-                                    )}
-                                                                                             ).catch(t=>{
+                     ).then(e=>{
+        var o;
+        try{
+          if(e){
+            const s={
+            }
+            ,a={
+              key:null===(o=null==e?void 0:e.metadata)||void 0===o?void 0:o.keyId,amount:null==s?void 0:s.amount,currency:"INR",name:"NJ collections",description:"",image:"",order_id:null==e?void 0:e.paymentToken,receipt:"receipt_order_"+(null==e?void 0:e.orderId),handler:o=>{
+                const s={
+                  method:"POST",headers:n,body:JSON.stringify({
+                    amount:null==e?void 0:e.amount,integrationKeys:{
+                    }
+                    ,paymentId:null==o?void 0:o.razorpay_payment_id,paymentModule:"wb_razorpay",paymentToken:null==o?void 0:o.razorpay_order_id,paymentType:"ONLINEPAYMENT",websiteFormId:null==t?void 0:t.id,websiteId:r,signature:null==o?void 0:o.razorpay_signature,transactionType:"AUTHORIZECAPTURE"}
+                                                             )};
+                fetch(i,s).then(t=>{
+                  if(t.ok)return t.json();
+                  throw new Error("API call failed")}
+                               ).then(t=>{
+                  p.reset(),alert("payment Received")}
+                                     ).catch(t=>{
+                  console.log(t)}
+                                            )}
+              ,prefill:{
+                name:c,email:u,contact:l}
+              ,theme:{
+                color:"#3399cc"}
+            }
+            ,d=new window.Razorpay(a);
+            d.open(),d.on("payment.failed",function(t){
+              alert(t.error.description)}
+                         )}
+          else console.log("PICKBAZAR_ERROR.SOMETHING_WENT_WRONG")}
+        catch(s){
+          console.log(s)}
+      }
+                           ).catch(t=>{
         console.error("Error during API call:",t)}
-                                                                                                    )}
-    )}.bind(el))(props[el.id]);
+                                  )}
+                                                                                           ).catch(t=>{
+      console.error("Error during API call:",t)}
+                                                                                                  )}
+                       )}.bind(el))(props[el.id]);
           }
           var items = document.querySelectorAll('#employeeCornerForm');
           for (var i = 0, len = items.length; i < len; i++) {
