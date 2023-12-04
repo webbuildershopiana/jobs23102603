@@ -443,21 +443,28 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
     const experienceWarningDiv = document.getElementById('experience-warning');
     const languageWarningDiv = document.getElementById('language-warning');
     for (const checkbox of qualificationCheckboxes) {
-  checkbox.addEventListener('change', () => {
-    if (checkbox.checked) {
-      if (selectedQualificationCheckbox) {
-        selectedQualificationCheckbox.checked = false;
+      checkbox.addEventListener('change', () => {
+        if (checkbox.checked) {
+          for (const otherCheckbox of qualificationCheckboxes) {
+            if (otherCheckbox !== checkbox && otherCheckbox.checked) {
+              otherCheckbox.checked = false;
+            }
+          }
+          qualificationSelected = true;
+          qualificationWarningDiv.style.display = 'none';
+        }
+        else {
+          qualificationSelected = false;
+        }
       }
-      selectedQualificationCheckbox = checkbox;
-      qualificationWarningDiv.style.display = 'none';
-    } else {
-      selectedQualificationCheckbox = null;
-      qualificationWarningDiv.textContent = 'Please select one option in Qualification.';
+                               );
+      if (!qualificationSelected) {
+      qualificationWarningDiv.textContent = 'Please select one option in Experience.';
       qualificationWarningDiv.style.display = 'block';
       qualificationWarningDiv.style.color = 'red';
     }
-  });
-}
+    }
+    
     for (const checkbox of experienceCheckboxes) {
       if (checkbox.checked) {
         experienceSelected = true;
