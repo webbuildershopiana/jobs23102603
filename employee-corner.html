@@ -285,7 +285,7 @@
      <section id="ia2q4tn" class="p-0">
       <div id="iercusn" class="container px-4 py-2">
        <div id="iw5uorh" class="row p-2 row-cols-1 row-cols-sm-2 row-cols-md-2">
-        <div class="col pt-3" id="iccwkfg">
+        <div id="iccwkfg" class="col pt-3">
          <div id="ibckau3" class="container gap-2">
           <label id="i7mhg32">Preferred Profile *</label><input type="text" placeholder="Your Answer...." id="iq1uzas">
          </div>
@@ -430,22 +430,22 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
   const languageWarningDiv = document.getElementById('language-warning');
   let previouslySelectedQualificationCheckbox = null;
   let previouslySelectedExperienceCheckbox = null;
-  
   qualificationCheckboxes.forEach((checkbox) => {
-      checkbox.addEventListener('change', () => {
-        // Uncheck all checkboxes except the one that triggered the change
-        checkboxes.forEach((cb) => {
-          if (cb !== checkbox) {
-            cb.checked = false;
-          }
-        });
-
-        // Show warning message if all checkboxes are unchecked
-        const atLeastOneChecked = Array.from(checkboxes).some((cb) => cb.checked);
-        qualificationWarningDiv.style.display = atLeastOneChecked ? 'none' : 'block';
-      });
-    });
-  
+    console.log(checkbox)
+    checkbox.addEventListener('change', () => {
+      qualificationCheckboxes.forEach((cb) => {
+        if (cb !== checkbox) {
+          cb.checked = false;
+        }
+      }
+	);
+      const atLeastOneChecked = Array.from(qualificationCheckboxes).some((cb) => cb.checked);
+      qualificationWarningDiv.textContent = 'Please select at least one option in Experience.';
+      qualificationWarningDiv.style.display = atLeastOneChecked ? 'none' : 'block';
+    }
+                             );
+  }
+                                 );
   experienceCheckboxes.forEach(checkbox => {
     checkbox.addEventListener('change', () => {
       if (checkbox.checked) {
@@ -458,7 +458,6 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
                              );
   }
                               );
-
   for (const checkbox of experienceCheckboxes) {
     if (checkbox.checked) {
       experienceSelected = true;
@@ -471,7 +470,6 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
       break;
     }
   }
- 
   if (!experienceSelected) {
     experienceWarningDiv.textContent = 'Please select at least one option in Experience.';
     experienceWarningDiv.style.display = 'block';
@@ -494,12 +492,11 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
   }
                                   )
   console.log(clearBtnElement);
-  
   this.addEventListener("submit",d=>{
     d.preventDefault()
     if (!qualificationSelected || !experienceSelected || !languageSelected) {
-    return;
-  }
+      return;
+    }
     if(d.preventDefault(),console.log(a),!t||!a)return void alert("Oops! We encountered a problem. Please try again later.");
     if(!(t&&r&&s&&e&&o&&i))return void alert("Oops! We encountered a problem. Please try again later.");
     const h=document.createElement("script");
