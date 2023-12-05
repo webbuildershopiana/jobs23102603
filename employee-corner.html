@@ -434,9 +434,9 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
   const qualificationWarning = document.getElementById('qualification-warning');
   const experienceWarning = document.getElementById('experience-warning');
   const languageWarning = document.getElementById('language-warning');
-  let atLeastOneQualificationChecked = true;
-  let atLeastOneExperienceChecked = true;
-  let atLeastOneLanguageChecked = true;
+  let atLeastOneQualificationChecked = Array.from(qualificationCheckboxes).some((cb) => cb.checked);
+let atLeastOneExperienceChecked = Array.from(experienceCheckboxes).some((cb) => cb.checked);
+let atLeastOneLanguageChecked = Array.from(languageCheckboxes).some((cb) => cb.checked);
   qualificationCheckboxes.forEach((checkbox) => {
     checkbox.addEventListener('change', () => {
       qualificationCheckboxes.forEach((cb) => {
@@ -445,64 +445,64 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
         }
       }
                                      );
-          atLeastOneQualificationChecked = Array.from(qualificationCheckboxes).some((cb) => cb.checked);
+      atLeastOneQualificationChecked = Array.from(qualificationCheckboxes).some((cb) => cb.checked);
     }
-                         );
+                             );
+    console.log(qualificationCheckboxes)
     if(atLeastOneQualificationChecked){
       qualificationWarning.style.display = 'none';
     }
     else {
       qualificationWarning.style.display = 'block';
     }
+  }
+                                 );
+  experienceCheckboxes.forEach((checkbox) => {
+    checkbox.addEventListener('change', () => {
+      experienceCheckboxes.forEach((cb) => {
+        if (cb !== checkbox) {
+          cb.checked = false;
+        }
+      }
+                                  );
+      atLeastOneExperienceChecked = Array.from(experienceCheckboxes).some((cb) => cb.checked);
+      if(atLeastOneExperienceChecked){
+        experienceWarning.style.display = 'none';
+      }
+      else {
+        experienceWarning.style.display = 'block';
+      }
     }
                              );
-    experienceCheckboxes.forEach((checkbox) => {
-      checkbox.addEventListener('change', () => {
-        experienceCheckboxes.forEach((cb) => {
-          if (cb !== checkbox) {
-            cb.checked = false;
-          }
-        }
-                                    );
-        atLeastOneExperienceChecked = Array.from(experienceCheckboxes).some((cb) => cb.checked);
-        if(atLeastOneExperienceChecked){
-          experienceWarning.style.display = 'none';
-        }
-        else {
-          experienceWarning.style.display = 'block';
-        }
-      }
-                               );
-    }
-                                );
-    languageCheckboxes.forEach((checkbox) => {
-      checkbox.addEventListener('change', () => {
-        languageCheckboxes.forEach((cb) => {
-          if (cb !== checkbox) {
-            cb.checked = false;
-          }
-        }
-                                  );
-        atLeastOneLanguageChecked = Array.from(languageCheckboxes).some((cb) => cb.checked);
-        if(languageWarning){
-          qualificationWarning.style.display = 'none';
-        }
-        else {
-          languageWarning.style.display = 'block';
-        }
-      }
-                               );
-    }
+  }
                               );
-    let clearBtnElement = document.getElementById("employee-form-buttons-container").querySelector("a");
-    clearBtnElement.addEventListener("click" , () =>{
-      p.reset();
+  languageCheckboxes.forEach((checkbox) => {
+    checkbox.addEventListener('change', () => {
+      languageCheckboxes.forEach((cb) => {
+        if (cb !== checkbox) {
+          cb.checked = false;
+        }
+      }
+                                );
+      atLeastOneLanguageChecked = Array.from(languageCheckboxes).some((cb) => cb.checked);
+      if(atLeastOneLanguageChecked){
+        qualificationWarning.style.display = 'none';
+      }
+      else {
+        languageWarning.style.display = 'block';
+      }
     }
-                                    )
-    console.log(clearBtnElement);
-    this.addEventListener("submit",d=>{
-      d.preventDefault()
-  
+                             );
+  }
+                            );
+  let clearBtnElement = document.getElementById("employee-form-buttons-container").querySelector("a");
+  clearBtnElement.addEventListener("click" , () =>{
+    p.reset();
+  }
+                                  )
+  console.log(clearBtnElement);
+  this.addEventListener("submit",d=>{
+    d.preventDefault()
     if (atLeastOneQualificationChecked && atLeastOneExperienceChecked && atLeastOneLanguageChecked) {
       return;
     }
@@ -573,7 +573,7 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
                                                                                            ).catch(t=>{
       console.error("Error during API call:",t)}
                                                                                                   )}
-                                 )}.bind(el))(props[el.id]);
+                       )}.bind(el))(props[el.id]);
           }</script>
  </body>
 </html>
