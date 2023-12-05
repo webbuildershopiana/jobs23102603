@@ -142,7 +142,7 @@
         </div>
         <div id="iq8tcu6" class="col pt-3">
          <div id="il8bqhl" class="container gap-2">
-          <label id="i6bbksu" for="dob">D.O.B.</label><input type="number" required placeholder="dd/mm/yyyy" id="ikwz20t" name="dob">
+          <label id="i6bbksu" for="dob">D.O.B.</label><input type="date" required placeholder="" id="ikwz20t" name="dob">
          </div>
         </div>
        </div>
@@ -454,7 +454,27 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
                              );
   }
                               );
-  
+   for (const checkbox of qualificationCheckboxes) {
+      if (checkbox.checked) {
+        qualificationSelected = true;
+        break;
+      }
+    }
+   
+    for (const checkbox of experienceCheckboxes) {
+      if (checkbox.checked) {
+        experienceSelected = true;
+        break;
+      }
+    }
+   
+    for (const checkbox of languageCheckboxes) {
+      if (checkbox.checked) {
+        languageSelected = true;
+        break;
+      }
+    }
+   
   let clearBtnElement = document.getElementById("employee-form-buttons-container").querySelector("a");
   clearBtnElement.addEventListener("click" , () =>{
     p.reset();
@@ -463,48 +483,32 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
   console.log(clearBtnElement);
   this.addEventListener("submit",d=>{
     d.preventDefault()
-    for (const checkbox of qualificationCheckboxes) {
-    if (checkbox.checked) {
-      qualificationSelected = true;
-      break;
+    if (!qualificationSelected) {
+      qualificationWarningDiv.textContent = 'Please select at least one option in Qualification.';
+      qualificationWarningDiv.style.display = 'block';
+      qualificationWarningDiv.style.color = 'red';
     }
-  }
-  if (!qualificationSelected) {
-    qualificationWarningDiv.textContent = 'Please select at least one option in Qualification.';
-    qualificationWarningDiv.style.display = 'block';
-    qualificationWarningDiv.style.color = 'red';
-  }
-  else {
-    qualificationWarningDiv.style.display = 'none';
-  }
-  for (const checkbox of experienceCheckboxes) {
-    if (checkbox.checked) {
-      experienceSelected = true;
-      break;
+    else {
+      qualificationWarningDiv.style.display = 'none';
     }
-  }
-  if (!experienceSelected) {
-    experienceWarningDiv.textContent = 'Please select at least one option in Experience.';
-    experienceWarningDiv.style.display = 'block';
-    experienceWarningDiv.style.color = 'red';
-  }
-  else {
-    experienceWarningDiv.style.display = 'none';
-  }
-  for (const checkbox of languageCheckboxes) {
-    if (checkbox.checked) {
-      languageSelected = true;
-      break;
+    
+     if (!experienceSelected) {
+      experienceWarningDiv.textContent = 'Please select at least one option in Experience.';
+      experienceWarningDiv.style.display = 'block';
+      experienceWarningDiv.style.color = 'red';
     }
-  }
-  if (!languageSelected) {
-    languageWarningDiv.textContent = 'Please select at least one option in Language.';
-    languageWarningDiv.style.display = 'block';
-    languageWarningDiv.style.color = 'red';
-  }
-  else {
-    languageWarningDiv.style.display = 'none';
-  }
+    else {
+      experienceWarningDiv.style.display = 'none';
+    }
+    
+     if (!languageSelected) {
+      languageWarningDiv.textContent = 'Please select at least one option in Language.';
+      languageWarningDiv.style.display = 'block';
+      languageWarningDiv.style.color = 'red';
+    }
+    else {
+      languageWarningDiv.style.display = 'none';
+    }
     if (!qualificationSelected || !experienceSelected || !languageSelected) {
       return;
     }
