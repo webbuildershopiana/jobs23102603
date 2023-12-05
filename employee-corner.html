@@ -436,9 +436,9 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
     const languageWarning = document.getElementById('language-warning');
     let atLeastOneQualificationChecked = Array.from(qualificationCheckboxes).some((cb) => cb.checked);
     let atLeastOneExperienceChecked = Array.from(experienceCheckboxes).some((cb) => cb.checked);
-    let atLeastOneLanguageChecked = Array.from(languageCheckboxes).some((cb) => cb.checked)
-    console.log(atLeastOneQualificationChecked)
-    
+    let oneLanguageChecked = Array.from(languageCheckboxes).some((cb) => cb.checked)
+
+
     qualificationCheckboxes.forEach((checkbox) => {
       checkbox.addEventListener('change', () => {
         qualificationCheckboxes.forEach((cb) => {
@@ -446,18 +446,33 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
             cb.checked = false;
           }
         }
-    );
+        );
         atLeastOneQualificationChecked = Array.from(qualificationCheckboxes).some((cb) => cb.checked);
-    });
-
-      if(atLeastOneQualificationChecked){
-        qualificationWarning.style.display = 'none';
       }
-      else {
-        qualificationWarning.style.display = 'block';
-      }
+    );
     }
 );
+
+experienceCheckboxes.forEach((checkbox) => {
+    checkbox.addEventListener('change', () => {
+        experienceCheckboxes.forEach((cb) => {
+        if (cb !== checkbox) {
+          cb.checked = false;
+        }
+      }
+      );
+      atLeastOneQualificationChecked = Array.from(experienceCheckboxes).some((cb) => cb.checked);
+    }
+  );
+  }
+);
+
+for (const checkbox of languageCheckboxes) {
+    if (checkbox.checked) {
+        oneLanguageChecked = true;
+      break;
+    }
+  }
 
     let clearBtnElement = document.getElementById("employee-form-buttons-container").querySelector("a");
     clearBtnElement.addEventListener("click" , () =>{
@@ -467,8 +482,28 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
     console.log(clearBtnElement);
     this.addEventListener("submit",d=>{
       d.preventDefault()
-      console.log(atLeastOneQualificationChecked)
-      if (atLeastOneQualificationChecked) {
+      if(atLeastOneQualificationChecked){
+        qualificationWarning.style.display = 'none';
+      }
+      else {
+        qualificationWarning.style.display = 'block';
+      }
+
+      if(atLeastOneExperienceChecked){
+        experienceWarning.style.display = 'none';
+      }
+      else {
+        experienceWarning.style.display = 'block';
+      }
+
+      if(oneLanguageChecked){
+        languageWarning.style.display = 'none';
+      }
+      else {
+        languageWarning.style.display = 'block';
+      }
+
+      if (!atLeastOneQualificationChecked && !atLeastOneExperienceChecked && !oneLanguageChecked) {
         return;
       }
       if(d.preventDefault(),console.log(a),!t||!a)return void alert("Oops! We encountered a problem. Please try again later.");
