@@ -454,7 +454,16 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
                              );
   }
                               );
-  for (const checkbox of qualificationCheckboxes) {
+  
+  let clearBtnElement = document.getElementById("employee-form-buttons-container").querySelector("a");
+  clearBtnElement.addEventListener("click" , () =>{
+    p.reset();
+  }
+                                  )
+  console.log(clearBtnElement);
+  this.addEventListener("submit",d=>{
+    d.preventDefault()
+    for (const checkbox of qualificationCheckboxes) {
     if (checkbox.checked) {
       qualificationSelected = true;
       break;
@@ -496,18 +505,9 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
   else {
     languageWarningDiv.style.display = 'none';
   }
-  
-  let clearBtnElement = document.getElementById("employee-form-buttons-container").querySelector("a");
-  clearBtnElement.addEventListener("click" , () =>{
-    p.reset();
-  }
-                                  )
-  console.log(clearBtnElement);
-  this.addEventListener("submit",d=>{
-    d.preventDefault()
     if (!qualificationSelected || !experienceSelected || !languageSelected) {
-    return;
-  }
+      return;
+    }
     if(d.preventDefault(),console.log(a),!t||!a)return void alert("Oops! We encountered a problem. Please try again later.");
     if(!(t&&r&&s&&e&&o&&i))return void alert("Oops! We encountered a problem. Please try again later.");
     const h=document.createElement("script");
