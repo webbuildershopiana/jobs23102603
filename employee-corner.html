@@ -416,170 +416,169 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
           for (var i = 0, len = els.length; i < len; i++) {
             var el = els[i];
             (function({
-  name:t,formDataurl:e,emailenable:n,websiteId:r,formInitUrl:o,paymentCaputreUrl:i,formType:s,price:a,websiteNumber:l,websiteName:c,websiteEmail:u}
-        ){
-  const p=this;
-  const qualificationCheckboxes = document.querySelectorAll('input[type="checkbox"][name="qualification"]');
-  const experienceCheckboxes = document.querySelectorAll('input[type="checkbox"][name="experience"]');
-  const languageCheckboxes = document.querySelectorAll('input[type="checkbox"][name="language"]');
-  let qualificationSelected = false;
-  let experienceSelected = false;
-  let languageSelected = false;
-  const qualificationWarningDiv = document.getElementById('qualification-warning');
-  const experienceWarningDiv = document.getElementById('experience-warning');
-  const languageWarningDiv = document.getElementById('language-warning');
-  let previouslySelectedQualificationCheckbox = null;
-  let previouslySelectedExperienceCheckbox = null;
-  qualificationCheckboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', () => {
-      if (checkbox.checked) {
-        if (previouslySelectedQualificationCheckbox) {
-          previouslySelectedQualificationCheckbox.checked = false;
+    name:t,formDataurl:e,emailenable:n,websiteId:r,formInitUrl:o,paymentCaputreUrl:i,formType:s,price:a,websiteNumber:l,websiteName:c,websiteEmail:u}
+          ){
+    const p=this;
+    const qualificationCheckboxes = document.querySelectorAll('input[type="checkbox"][name="qualification"]');
+    const experienceCheckboxes = document.querySelectorAll('input[type="checkbox"][name="experience"]');
+    const languageCheckboxes = document.querySelectorAll('input[type="checkbox"][name="language"]');
+    let qualificationSelected = null;
+    let experienceSelected = null;
+    let languageSelected = null;
+    const qualificationWarningDiv = document.getElementById('qualification-warning');
+    const experienceWarningDiv = document.getElementById('experience-warning');
+    const languageWarningDiv = document.getElementById('language-warning');
+    let previouslySelectedQualificationCheckbox = null;
+    let previouslySelectedExperienceCheckbox = null;
+    qualificationCheckboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', () => {
+        if (checkbox.checked) {
+          if (previouslySelectedQualificationCheckbox) {
+            previouslySelectedQualificationCheckbox.checked = false;
+          }
+          previouslySelectedQualificationCheckbox = checkbox;
         }
-        previouslySelectedQualificationCheckbox = checkbox;
       }
+                               );
     }
-                             );
-  }
-                                 );
-  experienceCheckboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', () => {
-      if (checkbox.checked) {
-        if (previouslySelectedExperienceCheckbox) {
-          previouslySelectedExperienceCheckbox.checked = false;
+                                   );
+    experienceCheckboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', () => {
+        if (checkbox.checked) {
+          if (previouslySelectedExperienceCheckbox) {
+            previouslySelectedExperienceCheckbox.checked = false;
+          }
+          previouslySelectedExperienceCheckbox = checkbox;
         }
-        previouslySelectedExperienceCheckbox = checkbox;
       }
+                               );
     }
-                             );
-  }
-                              );
-   for (const checkbox of qualificationCheckboxes) {
+                                );
+    for (const checkbox of qualificationCheckboxes) {
       if (checkbox.checked) {
         qualificationSelected = true;
         break;
       }
     }
-   
     for (const checkbox of experienceCheckboxes) {
       if (checkbox.checked) {
         experienceSelected = true;
         break;
       }
     }
-   
     for (const checkbox of languageCheckboxes) {
       if (checkbox.checked) {
         languageSelected = true;
         break;
       }
     }
-   
-  let clearBtnElement = document.getElementById("employee-form-buttons-container").querySelector("a");
-  clearBtnElement.addEventListener("click" , () =>{
-    p.reset();
-  }
-                                  )
-  console.log(clearBtnElement);
-  this.addEventListener("submit",d=>{
-    d.preventDefault()
+
     if (!qualificationSelected) {
-      qualificationWarningDiv.textContent = 'Please select at least one option in Qualification.';
-      qualificationWarningDiv.style.display = 'block';
-      qualificationWarningDiv.style.color = 'red';
+        qualificationWarningDiv.textContent = 'Please select at least one option in Qualification.';
+        qualificationWarningDiv.style.display = 'block';
+        qualificationWarningDiv.style.color = 'red';
+      }
+      else {
+        qualificationWarningDiv.style.display = 'none';
+      }
+      if (!experienceSelected) {
+        experienceWarningDiv.textContent = 'Please select at least one option in Experience.';
+        experienceWarningDiv.style.display = 'block';
+        experienceWarningDiv.style.color = 'red';
+      }
+      else {
+        experienceWarningDiv.style.display = 'none';
+      }
+      if (!languageSelected) {
+        languageWarningDiv.textContent = 'Please select at least one option in Language.';
+        languageWarningDiv.style.display = 'block';
+        languageWarningDiv.style.color = 'red';
+      }
+      else {
+        languageWarningDiv.style.display = 'none';
+      }
+
+
+    let clearBtnElement = document.getElementById("employee-form-buttons-container").querySelector("a");
+    clearBtnElement.addEventListener("click" , () =>{
+      p.reset();
     }
-    else {
-      qualificationWarningDiv.style.display = 'none';
-    }
-    
-     if (!experienceSelected) {
-      experienceWarningDiv.textContent = 'Please select at least one option in Experience.';
-      experienceWarningDiv.style.display = 'block';
-      experienceWarningDiv.style.color = 'red';
-    }
-    else {
-      experienceWarningDiv.style.display = 'none';
-    }
-    
-     if (!languageSelected) {
-      languageWarningDiv.textContent = 'Please select at least one option in Language.';
-      languageWarningDiv.style.display = 'block';
-      languageWarningDiv.style.color = 'red';
-    }
-    else {
-      languageWarningDiv.style.display = 'none';
-    }
-    if (!qualificationSelected || !experienceSelected || !languageSelected) {
-      return;
-    }
-    if(d.preventDefault(),console.log(a),!t||!a)return void alert("Oops! We encountered a problem. Please try again later.");
-    if(!(t&&r&&s&&e&&o&&i))return void alert("Oops! We encountered a problem. Please try again later.");
-    const h=document.createElement("script");
-    h.src="https://checkout.razorpay.com/v1/checkout.js",h.async=!0,document.head.appendChild(h);
-    const f=new FormData(p);
-    for(let t=0;t<p.elements.length;t++){
-      const e=p.elements[t];
-      e.name&&("INPUT"===e.tagName?"text"===e.type||"number"===e.type||"email"===e.type?f[e.name]=e.value:"checkbox"===e.type&&(f[e.name]=e.checked):("TEXTAREA"===e.tagName||"SELECT"===e.tagName)&&(f[e.name]=e.value))}
-    f.append("emailEnabled",n),f.append("formName",t),f.append("price",a),fetch(e,{
-      method:"POST",body:f}
-                                                                               ).then(t=>{
-      if(t.ok)return t.json();
-      throw new Error("API call failed")}
-                                                                                     ).then(t=>{
-      if("SIMPLE_FORM"===s)return p.reset(),void alert("details saved successfully");
-      const e={
-        websiteFormId:null==t?void 0:t.id,amount:null==t?void 0:t.price,websiteId:r,integrationKeys:{
-        }
-        ,paymentId:"",paymentModule:"wb_razorpay",paymentToken:"",paymentType:"ONLINEPAYMENT"}
-      ,n=new Headers;
-      n.append("Content-Type","application/json");
-      const a={
-        method:"POST",headers:n,body:JSON.stringify(e)};
-      fetch(o,a).then(t=>{
+                                    )
+    console.log(clearBtnElement);
+    this.addEventListener("submit",d=>{
+      d.preventDefault()
+     
+      if (!qualificationSelected || !experienceSelected || !languageSelected) {
+        return;
+      }
+      if(d.preventDefault(),console.log(a),!t||!a)return void alert("Oops! We encountered a problem. Please try again later.");
+      if(!(t&&r&&s&&e&&o&&i))return void alert("Oops! We encountered a problem. Please try again later.");
+      const h=document.createElement("script");
+      h.src="https://checkout.razorpay.com/v1/checkout.js",h.async=!0,document.head.appendChild(h);
+      const f=new FormData(p);
+      for(let t=0;t<p.elements.length;t++){
+        const e=p.elements[t];
+        e.name&&("INPUT"===e.tagName?"text"===e.type||"number"===e.type||"email"===e.type?f[e.name]=e.value:"checkbox"===e.type&&(f[e.name]=e.checked):("TEXTAREA"===e.tagName||"SELECT"===e.tagName)&&(f[e.name]=e.value))}
+      f.append("emailEnabled",n),f.append("formName",t),f.append("price",a),fetch(e,{
+        method:"POST",body:f}
+                                                                                 ).then(t=>{
         if(t.ok)return t.json();
         throw new Error("API call failed")}
-                     ).then(e=>{
-        var o;
-        try{
-          if(e){
-            const s={
-            }
-            ,a={
-              key:null===(o=null==e?void 0:e.metadata)||void 0===o?void 0:o.keyId,amount:null==s?void 0:s.amount,currency:"INR",name:"NJ collections",description:"",image:"",order_id:null==e?void 0:e.paymentToken,receipt:"receipt_order_"+(null==e?void 0:e.orderId),handler:o=>{
-                const s={
-                  method:"POST",headers:n,body:JSON.stringify({
-                    amount:null==e?void 0:e.amount,integrationKeys:{
-                    }
-                    ,paymentId:null==o?void 0:o.razorpay_payment_id,paymentModule:"wb_razorpay",paymentToken:null==o?void 0:o.razorpay_order_id,paymentType:"ONLINEPAYMENT",websiteFormId:null==t?void 0:t.id,websiteId:r,signature:null==o?void 0:o.razorpay_signature,transactionType:"AUTHORIZECAPTURE"}
-                                                             )};
-                fetch(i,s).then(t=>{
-                  if(t.ok)return t.json();
-                  throw new Error("API call failed")}
-                               ).then(t=>{
-                  p.reset(),alert("payment Received")}
-                                     ).catch(t=>{
-                  console.log(t)}
-                                            )}
-              ,prefill:{
-                name:c,email:u,contact:l}
-              ,theme:{
-                color:"#3399cc"}
-            }
-            ,d=new window.Razorpay(a);
-            d.open(),d.on("payment.failed",function(t){
-              alert(t.error.description)}
-                         )}
-          else console.log("PICKBAZAR_ERROR.SOMETHING_WENT_WRONG")}
-        catch(s){
-          console.log(s)}
-      }
-                           ).catch(t=>{
+                                                                                       ).then(t=>{
+        if("SIMPLE_FORM"===s)return p.reset(),void alert("details saved successfully");
+        const e={
+          websiteFormId:null==t?void 0:t.id,amount:null==t?void 0:t.price,websiteId:r,integrationKeys:{
+          }
+          ,paymentId:"",paymentModule:"wb_razorpay",paymentToken:"",paymentType:"ONLINEPAYMENT"}
+        ,n=new Headers;
+        n.append("Content-Type","application/json");
+        const a={
+          method:"POST",headers:n,body:JSON.stringify(e)};
+        fetch(o,a).then(t=>{
+          if(t.ok)return t.json();
+          throw new Error("API call failed")}
+                       ).then(e=>{
+          var o;
+          try{
+            if(e){
+              const s={
+              }
+              ,a={
+                key:null===(o=null==e?void 0:e.metadata)||void 0===o?void 0:o.keyId,amount:null==s?void 0:s.amount,currency:"INR",name:"NJ collections",description:"",image:"",order_id:null==e?void 0:e.paymentToken,receipt:"receipt_order_"+(null==e?void 0:e.orderId),handler:o=>{
+                  const s={
+                    method:"POST",headers:n,body:JSON.stringify({
+                      amount:null==e?void 0:e.amount,integrationKeys:{
+                      }
+                      ,paymentId:null==o?void 0:o.razorpay_payment_id,paymentModule:"wb_razorpay",paymentToken:null==o?void 0:o.razorpay_order_id,paymentType:"ONLINEPAYMENT",websiteFormId:null==t?void 0:t.id,websiteId:r,signature:null==o?void 0:o.razorpay_signature,transactionType:"AUTHORIZECAPTURE"}
+                                                               )};
+                  fetch(i,s).then(t=>{
+                    if(t.ok)return t.json();
+                    throw new Error("API call failed")}
+                                 ).then(t=>{
+                    p.reset(),alert("payment Received")}
+                                       ).catch(t=>{
+                    console.log(t)}
+                                              )}
+                ,prefill:{
+                  name:c,email:u,contact:l}
+                ,theme:{
+                  color:"#3399cc"}
+              }
+              ,d=new window.Razorpay(a);
+              d.open(),d.on("payment.failed",function(t){
+                alert(t.error.description)}
+                           )}
+            else console.log("PICKBAZAR_ERROR.SOMETHING_WENT_WRONG")}
+          catch(s){
+            console.log(s)}
+        }
+                             ).catch(t=>{
+          console.error("Error during API call:",t)}
+                                    )}
+                                                                                             ).catch(t=>{
         console.error("Error during API call:",t)}
-                                  )}
-                                                                                           ).catch(t=>{
-      console.error("Error during API call:",t)}
-                                                                                                  )}
-                       )}.bind(el))(props[el.id]);
+                                                                                                    )}
+                         )}.bind(el))(props[el.id]);
           }</script>
  </body>
 </html>
