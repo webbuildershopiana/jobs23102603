@@ -329,6 +329,38 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
   name:t,formDataurl:e,emailenable:n,websiteId:r,formInitUrl:o,paymentCaputreUrl:i,formType:s,price:a,websiteNumber:l,websiteName:c,websiteEmail:u}
         ){
   const p=this;
+   const hiringRoleCheckboxes = document.querySelectorAll('input[type="checkbox"][name="hiringRole"]');
+    const experienceCheckboxes = document.querySelectorAll('input[type="checkbox"][name="experience"]');
+    let hiringRoleSelected = false;
+    let experienceSelected = false;
+    const hiringRoleWarningWarningDiv = document.getElementById('hiring-role-warning');
+    const experienceWarningDiv = document.getElementById('experience-warning-div');
+    let previouslySelectedHiringRoleCheckbox = null;
+    let previouslySelectedExperienceCheckbox = null;
+    hiringRoleCheckboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', () => {
+        if (checkbox.checked) {
+          if (previouslySelectedHiringRoleCheckbox) {
+            previouslySelectedHiringRoleCheckbox.checked = false;
+          }
+          previouslySelectedHiringRoleCheckbox = checkbox;
+        }
+      }
+                               );
+    }
+                                );
+    experienceCheckboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', () => {
+        if (checkbox.checked) {
+          if (previouslySelectedExperienceCheckbox) {
+            previouslySelectedExperienceCheckbox.checked = false;
+          }
+          previouslySelectedExperienceCheckbox = checkbox;
+        }
+      }
+                               );
+    }
+                                );
   let clearBtnElement = document.getElementById("postAjob-form-buttons-container").querySelector("a");
   clearBtnElement.addEventListener("click" , () =>{
     p.reset();
@@ -339,38 +371,7 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
     if(!(t&&r&&s&&e&&o&&i))return void alert("Oops! We encountered a problem. Please try again later.");
     const h=document.createElement("script");
     h.src="https://checkout.razorpay.com/v1/checkout.js",h.async=!0,document.head.appendChild(h);
-    const hiringRoleCheckboxes = document.querySelectorAll('input[type="checkbox"][name="hiringRole"]');
-    const experienceCheckboxes = document.querySelectorAll('input[type="checkbox"][name="experience"]');
-    let hiringRoleSelected = false;
-    let experienceSelected = false;
-    const hiringRoleWarningWarningDiv = document.getElementById('hiring-role-warning');
-    const experienceWarningDiv = document.getElementById('experience-warning-div');
-    
-    let previouslySelectedHiringRoleCheckbox = null;
-let previouslySelectedExperienceCheckbox = null;
-
-hiringRoleCheckboxes.forEach(checkbox => {
-  checkbox.addEventListener('change', () => {
-    if (checkbox.checked) {
-      if (previouslySelectedHiringRoleCheckbox) {
-        previouslySelectedHiringRoleCheckbox.checked = false;
-      }
-      previouslySelectedHiringRoleCheckbox = checkbox;
-    }
-  });
-});
-experienceCheckboxes.forEach(checkbox => {
-  checkbox.addEventListener('change', () => {
-    if (checkbox.checked) {
-      if (previouslySelectedExperienceCheckbox) {
-        previouslySelectedExperienceCheckbox.checked = false;
-      }
-      previouslySelectedExperienceCheckbox = checkbox;
-    }
-  });
-});
-    
-    
+   
     for (const checkbox of hiringRoleCheckboxes) {
       if (checkbox.checked) {
         hiringRoleSelected = true;
