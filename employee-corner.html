@@ -435,8 +435,11 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
   const experienceWarning = document.getElementById('experience-warning');
   const languageWarning = document.getElementById('language-warning');
   let atLeastOneQualificationChecked = Array.from(qualificationCheckboxes).some((cb) => cb.checked);
-let atLeastOneExperienceChecked = Array.from(experienceCheckboxes).some((cb) => cb.checked);
-let atLeastOneLanguageChecked = Array.from(languageCheckboxes).some((cb) => cb.checked);
+  let atLeastOneExperienceChecked = Array.from(experienceCheckboxes).some((cb) => cb.checked);
+  let atLeastOneLanguageChecked = Array.from(languageCheckboxes).some((cb) => cb.checked
+                                                                      
+console.log(atLeastOneQualificationChecked)
+                                                                      
   qualificationCheckboxes.forEach((checkbox) => {
     checkbox.addEventListener('change', () => {
       qualificationCheckboxes.forEach((cb) => {
@@ -448,7 +451,6 @@ let atLeastOneLanguageChecked = Array.from(languageCheckboxes).some((cb) => cb.c
       atLeastOneQualificationChecked = Array.from(qualificationCheckboxes).some((cb) => cb.checked);
     }
                              );
-    console.log(qualificationCheckboxes)
     if(atLeastOneQualificationChecked){
       qualificationWarning.style.display = 'none';
     }
@@ -503,6 +505,7 @@ let atLeastOneLanguageChecked = Array.from(languageCheckboxes).some((cb) => cb.c
   console.log(clearBtnElement);
   this.addEventListener("submit",d=>{
     d.preventDefault()
+    console.log(atLeastOneQualificationChecked)
     if (atLeastOneQualificationChecked && atLeastOneExperienceChecked && atLeastOneLanguageChecked) {
       return;
     }
