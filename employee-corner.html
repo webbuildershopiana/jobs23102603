@@ -419,86 +419,84 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
   name:t,formDataurl:e,emailenable:n,websiteId:r,formInitUrl:o,paymentCaputreUrl:i,formType:s,price:a,websiteNumber:l,websiteName:c,websiteEmail:u}
         ){
   const p=this;
-   const qualificationCheckboxes = document.querySelectorAll('input[type="checkbox"][name="qualification"]');
-    const experienceCheckboxes = document.querySelectorAll('input[type="checkbox"][name="experience"]');
-    const languageCheckboxes = document.querySelectorAll('input[type="checkbox"][name="language"]');
-    let qualificationSelected = false;
-    let experienceSelected = false;
-    let languageSelected = false;
-    const qualificationWarningDiv = document.getElementById('qualification-warning');
-    const experienceWarningDiv = document.getElementById('experience-warning');
-    const languageWarningDiv = document.getElementById('language-warning');
-    let previouslySelectedQualificationCheckbox = null;
-    let previouslySelectedExperienceCheckbox = null;
-    qualificationCheckboxes.forEach(checkbox => {
-      checkbox.addEventListener('change', () => {
-        if (checkbox.checked) {
-          if (previouslySelectedQualificationCheckbox) {
-            previouslySelectedQualificationCheckbox.checked = false;
-          }
-          previouslySelectedQualificationCheckbox = checkbox;
+  const qualificationCheckboxes = document.querySelectorAll('input[type="checkbox"][name="qualification"]');
+  const experienceCheckboxes = document.querySelectorAll('input[type="checkbox"][name="experience"]');
+  const languageCheckboxes = document.querySelectorAll('input[type="checkbox"][name="language"]');
+  let qualificationSelected = false;
+  let experienceSelected = false;
+  let languageSelected = false;
+  const qualificationWarningDiv = document.getElementById('qualification-warning');
+  const experienceWarningDiv = document.getElementById('experience-warning');
+  const languageWarningDiv = document.getElementById('language-warning');
+  let previouslySelectedQualificationCheckbox = null;
+  let previouslySelectedExperienceCheckbox = null;
+  qualificationCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', () => {
+      if (checkbox.checked) {
+        if (previouslySelectedQualificationCheckbox) {
+          previouslySelectedQualificationCheckbox.checked = false;
         }
+        previouslySelectedQualificationCheckbox = checkbox;
       }
-                               );
     }
-                                   );
-    experienceCheckboxes.forEach(checkbox => {
-      checkbox.addEventListener('change', () => {
-        if (checkbox.checked) {
-          if (previouslySelectedExperienceCheckbox) {
-            previouslySelectedExperienceCheckbox.checked = false;
-          }
-          previouslySelectedExperienceCheckbox = checkbox;
+                             );
+  }
+                                 );
+  experienceCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', () => {
+      if (checkbox.checked) {
+        if (previouslySelectedExperienceCheckbox) {
+          previouslySelectedExperienceCheckbox.checked = false;
         }
-      }
-                               );
-    }
-                                );
-    for (const checkbox of qualificationCheckboxes) {
-      if (checkbox.checked) {
-        qualificationSelected = true;
-        break;
+        previouslySelectedExperienceCheckbox = checkbox;
       }
     }
-    if (!qualificationSelected) {
-      qualificationWarningDiv.textContent = 'Please select at least one option in Qualification.';
-      qualificationWarningDiv.style.display = 'block';
-      qualificationWarningDiv.style.color = 'red';
+                             );
+  }
+                              );
+  for (const checkbox of qualificationCheckboxes) {
+    if (checkbox.checked) {
+      qualificationSelected = true;
+      break;
     }
-    else {
-      qualificationWarningDiv.style.display = 'none';
+  }
+  if (!qualificationSelected) {
+    qualificationWarningDiv.textContent = 'Please select at least one option in Qualification.';
+    qualificationWarningDiv.style.display = 'block';
+    qualificationWarningDiv.style.color = 'red';
+  }
+  else {
+    qualificationWarningDiv.style.display = 'none';
+  }
+  for (const checkbox of experienceCheckboxes) {
+    if (checkbox.checked) {
+      experienceSelected = true;
+      break;
     }
-    for (const checkbox of experienceCheckboxes) {
-      if (checkbox.checked) {
-        experienceSelected = true;
-        break;
-      }
+  }
+  if (!experienceSelected) {
+    experienceWarningDiv.textContent = 'Please select at least one option in Experience.';
+    experienceWarningDiv.style.display = 'block';
+    experienceWarningDiv.style.color = 'red';
+  }
+  else {
+    experienceWarningDiv.style.display = 'none';
+  }
+  for (const checkbox of languageCheckboxes) {
+    if (checkbox.checked) {
+      languageSelected = true;
+      break;
     }
-    if (!experienceSelected) {
-      experienceWarningDiv.textContent = 'Please select at least one option in Experience.';
-      experienceWarningDiv.style.display = 'block';
-      experienceWarningDiv.style.color = 'red';
-    }
-    else {
-      experienceWarningDiv.style.display = 'none';
-    }
-    for (const checkbox of languageCheckboxes) {
-      if (checkbox.checked) {
-        languageSelected = true;
-        break;
-      }
-    }
-    if (!languageSelected) {
-      languageWarningDiv.textContent = 'Please select at least one option in Language.';
-      languageWarningDiv.style.display = 'block';
-      languageWarningDiv.style.color = 'red';
-    }
-    else {
-      languageWarningDiv.style.display = 'none';
-    }
-    if (!qualificationSelected || !experienceSelected || !languageSelected) {
-      return;
-    }
+  }
+  if (!languageSelected) {
+    languageWarningDiv.textContent = 'Please select at least one option in Language.';
+    languageWarningDiv.style.display = 'block';
+    languageWarningDiv.style.color = 'red';
+  }
+  else {
+    languageWarningDiv.style.display = 'none';
+  }
+  
   let clearBtnElement = document.getElementById("employee-form-buttons-container").querySelector("a");
   clearBtnElement.addEventListener("click" , () =>{
     p.reset();
@@ -507,6 +505,9 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
   console.log(clearBtnElement);
   this.addEventListener("submit",d=>{
     d.preventDefault()
+    if (!qualificationSelected || !experienceSelected || !languageSelected) {
+    return;
+  }
     if(d.preventDefault(),console.log(a),!t||!a)return void alert("Oops! We encountered a problem. Please try again later.");
     if(!(t&&r&&s&&e&&o&&i))return void alert("Oops! We encountered a problem. Please try again later.");
     const h=document.createElement("script");
