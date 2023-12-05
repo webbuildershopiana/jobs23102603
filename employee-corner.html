@@ -440,31 +440,32 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
     const qualificationWarningDiv = document.getElementById('qualification-warning');
     const experienceWarningDiv = document.getElementById('experience-warning');
     const languageWarningDiv = document.getElementById('language-warning');
-
-
-let previouslySelectedQualificationCheckbox = null;
-let previouslySelectedExperienceCheckbox = null;
-
-qualificationCheckboxes.forEach(checkbox => {
-  checkbox.addEventListener('change', () => {
-    if (checkbox.checked) {
-      if (previouslySelectedQualificationCheckbox) {
-        previouslySelectedQualificationCheckbox.checked = false;
+    let previouslySelectedQualificationCheckbox = null;
+    let previouslySelectedExperienceCheckbox = null;
+    qualificationCheckboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', () => {
+        if (checkbox.checked) {
+          if (previouslySelectedQualificationCheckbox) {
+            previouslySelectedQualificationCheckbox.checked = false;
+          }
+          previouslySelectedQualificationCheckbox = checkbox;
+        }
       }
-      previouslySelectedQualificationCheckbox = checkbox;
+                               );
     }
-  });
-});
-experienceCheckboxes.forEach(checkbox => {
-  checkbox.addEventListener('change', () => {
-    if (checkbox.checked) {
-      if (previouslySelectedExperienceCheckbox) {
-        previouslySelectedExperienceCheckbox.checked = false;
+                                   );
+    experienceCheckboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', () => {
+        if (checkbox.checked) {
+          if (previouslySelectedExperienceCheckbox) {
+            previouslySelectedExperienceCheckbox.checked = false;
+          }
+          previouslySelectedExperienceCheckbox = checkbox;
+        }
       }
-      previouslySelectedExperienceCheckbox = checkbox;
+                               );
     }
-  });
-});
+                                );
     for (const checkbox of qualificationCheckboxes) {
       if (checkbox.checked) {
         qualificationSelected = true;
