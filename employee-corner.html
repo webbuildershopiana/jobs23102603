@@ -425,87 +425,84 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
           for (var i = 0, len = els.length; i < len; i++) {
             var el = els[i];
             (function({
-    name:t,formDataurl:e,emailenable:n,websiteId:r,formInitUrl:o,paymentCaputreUrl:i,formType:s,price:a,websiteNumber:l,websiteName:c,websiteEmail:u}
-          ){
-    const p=this;
-    const qualificationCheckboxes = document.querySelectorAll('input[type="checkbox"][name="qualification"]');
-    const experienceCheckboxes = document.querySelectorAll('input[type="checkbox"][name="experience"]');
-    const languageCheckboxes = document.querySelectorAll('input[type="checkbox"][name="language"]');
-    const qualificationWarning = document.getElementById('qualification-warning');
-    const experienceWarning = document.getElementById('experience-warning');
-    const languageWarning = document.getElementById('language-warning');
-    let atLeastOneQualificationChecked = Array.from(qualificationCheckboxes).some((cb) => cb.checked);
-    let atLeastOneExperienceChecked = Array.from(experienceCheckboxes).some((cb) => cb.checked);
-    let oneLanguageChecked = Array.from(languageCheckboxes).some((cb) => cb.checked)
-
-
-    qualificationCheckboxes.forEach((checkbox) => {
-      checkbox.addEventListener('change', () => {
-        qualificationCheckboxes.forEach((cb) => {
-          if (cb !== checkbox) {
-            cb.checked = false;
-          }
-        }
-        );
-        atLeastOneQualificationChecked = Array.from(qualificationCheckboxes).some((cb) => cb.checked);
-      }
-    );
-    }
-);
-
-experienceCheckboxes.forEach((checkbox) => {
+  name:t,formDataurl:e,emailenable:n,websiteId:r,formInitUrl:o,paymentCaputreUrl:i,formType:s,price:a,websiteNumber:l,websiteName:c,websiteEmail:u}
+        ){
+  const p=this;
+  const qualificationCheckboxes = document.querySelectorAll('input[type="checkbox"][name="qualification"]');
+  const experienceCheckboxes = document.querySelectorAll('input[type="checkbox"][name="experience"]');
+  const languageCheckboxes = document.querySelectorAll('input[type="checkbox"][name="language"]');
+  const qualificationWarning = document.getElementById('qualification-warning');
+  const experienceWarning = document.getElementById('experience-warning');
+  const languageWarning = document.getElementById('language-warning');
+  let atLeastOneQualificationChecked = Array.from(qualificationCheckboxes).some((cb) => cb.checked);
+  let atLeastOneExperienceChecked = Array.from(experienceCheckboxes).some((cb) => cb.checked);
+  let oneLanguageChecked = Array.from(languageCheckboxes).some((cb) => cb.checked)
+  qualificationCheckboxes.forEach((checkbox) => {
     checkbox.addEventListener('change', () => {
-        experienceCheckboxes.forEach((cb) => {
+      qualificationCheckboxes.forEach((cb) => {
         if (cb !== checkbox) {
           cb.checked = false;
         }
       }
-      );
-      atLeastOneQualificationChecked = Array.from(experienceCheckboxes).some((cb) => cb.checked);
+                                     );
+      atLeastOneQualificationChecked = Array.from(qualificationCheckboxes).some((cb) => cb.checked);
     }
-  );
+                             );
   }
-);
-
-for (const checkbox of languageCheckboxes) {
+                                 );
+  experienceCheckboxes.forEach((checkbox) => {
+    checkbox.addEventListener('change', () => {
+      experienceCheckboxes.forEach((cb) => {
+        if (cb !== checkbox) {
+          cb.checked = false;
+        }
+      }
+                                  );
+      atLeastOneExperienceChecked = Array.from(experienceCheckboxes).some((cb) => cb.checked);
+    }
+                             );
+  }
+                              );
+  for (const checkbox of languageCheckboxes) {
     if (checkbox.checked) {
-        oneLanguageChecked = true;
+      oneLanguageChecked = true;
       break;
     }
   }
-
-    let clearBtnElement = document.getElementById("employee-form-buttons-container").querySelector("a");
-    clearBtnElement.addEventListener("click" , () =>{
-      p.reset();
+  let clearBtnElement = document.getElementById("employee-form-buttons-container").querySelector("a");
+  clearBtnElement.addEventListener("click" , () =>{
+    p.reset();
+  }
+                                  )
+  console.log(clearBtnElement);
+  this.addEventListener("submit",d=>{
+    d.preventDefault()
+    if(atLeastOneQualificationChecked){
+      qualificationWarning.style.display = 'none';
     }
-                                    )
-    console.log(clearBtnElement);
-    this.addEventListener("submit",d=>{
-      d.preventDefault()
-      if(atLeastOneQualificationChecked){
-        qualificationWarning.style.display = 'none';
-      }
-      else {
-        qualificationWarning.style.display = 'block';
-      }
-
-      if(atLeastOneExperienceChecked){
-        experienceWarning.style.display = 'none';
-      }
-      else {
-        experienceWarning.style.display = 'block';
-      }
-
-      if(oneLanguageChecked){
-        languageWarning.style.display = 'none';
-      }
-      else {
-        languageWarning.style.display = 'block';
-      }
-
-      if (!atLeastOneQualificationChecked && !atLeastOneExperienceChecked && !oneLanguageChecked) {
-        return;
-      }
+    else {
+      qualificationWarning.style.display = 'block';
+    }
+    if(atLeastOneExperienceChecked){
+      experienceWarning.style.display = 'none';
+    }
+    else {
+      experienceWarning.style.display = 'block';
+    }
+    if(oneLanguageChecked){
+      languageWarning.style.display = 'none';
+    }
+    else {
+      languageWarning.style.display = 'block';
+    }
+    console.log(atLeastOneQualificationChecked)
+    console.log(atLeastOneExperienceChecked)
+    console.log(oneLanguageChecked)
+    if (atLeastOneQualificationChecked && atLeastOneExperienceChecked && oneLanguageChecked) {
+      formSubmitProcess()
+    }
+    function formSubmitProcess () {
+      console.log('Form is submited.')
       if(d.preventDefault(),console.log(a),!t||!a)return void alert("Oops! We encountered a problem. Please try again later.");
       if(!(t&&r&&s&&e&&o&&i))return void alert("Oops! We encountered a problem. Please try again later.");
       const h=document.createElement("script");
@@ -572,8 +569,10 @@ for (const checkbox of languageCheckboxes) {
                                     )}
                                                                                              ).catch(t=>{
         console.error("Error during API call:",t)}
-                                                                                                    )}
-                         )}.bind(el))(props[el.id]);
+                                                                                                    )
+    }
+  }
+                       )}.bind(el))(props[el.id]);
           }</script>
  </body>
 </html>
