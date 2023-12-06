@@ -436,7 +436,7 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
   const languageWarning = document.getElementById('language-warning');
   let atLeastOneQualificationChecked = Array.from(qualificationCheckboxes).some((cb) => cb.checked);
   let atLeastOneExperienceChecked = Array.from(experienceCheckboxes).some((cb) => cb.checked);
-  let oneLanguageChecked = Array.from(languageCheckboxes).some((cb) => cb.checked)
+  let oneLanguageChecked = false;
   qualificationCheckboxes.forEach((checkbox) => {
     checkbox.addEventListener('change', () => {
       qualificationCheckboxes.forEach((cb) => {
