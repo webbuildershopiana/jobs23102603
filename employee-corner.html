@@ -464,10 +464,9 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
   }
                               );
   for (const checkbox of languageCheckboxes) {
-    if (checkbox.checked) {
-      oneLanguageChecked = true;
-      break;
-    }
+    checkbox.addEventListener('change', () => {
+      oneLanguageChecked = Array.from(languageCheckboxes).some((cb) => cb.checked);
+    });
   }
   let clearBtnElement = document.getElementById("employee-form-buttons-container").querySelector("a");
   clearBtnElement.addEventListener("click" , () =>{
@@ -495,9 +494,7 @@ const t=this.querySelectorAll(".hamburger1"),e=this.querySelectorAll(".navbar-co
     else {
       languageWarning.style.display = 'block';
     }
-    console.log(atLeastOneQualificationChecked)
-    console.log(atLeastOneExperienceChecked)
-    console.log(oneLanguageChecked)
+    
     if (atLeastOneQualificationChecked && atLeastOneExperienceChecked && oneLanguageChecked) {
       formSubmitProcess()
     }
